@@ -22,6 +22,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import org.xmlpull.v1.XmlPullParser;
@@ -30,8 +32,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -42,22 +42,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     StringBuffer[] data;
     String[] data2;
     GTSTracker gps = null;
-
+    private GoogleMap mMap;
     public Handler mHandler;
-
+    String[] lat;
+    String[] lon;
     public static int RENEW_GPS = 1;
     public static int SEND_PRINT = 2;
     double latitude = 0;
     double longitude = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FragmentManager fragmentManager = getFragmentManager();
-        MapFragment mapFragment = (MapFragment)fragmentManager
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         text = (Button) findViewById(R.id.text);
         text2 = (Button) findViewById(R.id.text2);
         text3 = (Button) findViewById(R.id.text3);
@@ -131,15 +131,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
     }
-    public String getTimeStr(){
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat sdfNow = new SimpleDateFormat("MM/dd HH:mm:ss");
-        return sdfNow.format(date);
-    }
     public void mOnClick(View v){
 
-        switch( v.getId() ){
+        switch( v.getId() ) {
             case R.id.button:
 
                 //Android 4.0 이상 부터는 네트워크를 이용할 때 반드시 Thread 사용해야 함
@@ -148,23 +142,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
-                        data= getXmlData();//아래 메소드를 호출하여 XML data를 파싱해서 String 객체로 얻어오기
+                        data = getXmlData();//아래 메소드를 호출하여 XML data를 파싱해서 String 객체로 얻어오기
                         //UI Thread(Main Thread)를 제외한 어떤 Thread도 화면을 변경할 수 없기때문에
                         //runOnUiThread()를 이용하여 UI Thread가 TextView 글씨 변경하도록 함
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 // TODO Auto-generated method stub
-                                if(data[0] !=null) {
+                                if (data[0] != null) {
+
                                     text.setText(data[0].toString());
                                 }
-                                if(data[1] !=null)text2.setText(data[1].toString());
-                                if(data[2] !=null)text3.setText(data[2].toString());
+                                if (data[1] != null) text2.setText(data[1].toString());
+                                if (data[2] != null) text3.setText(data[2].toString());
                             }
                         });
                     }
                 }).start();
-                break;
         }
     }//mOnClick method..
 
@@ -173,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     StringBuffer[] getXmlData(){
         StringBuffer[] buffer=new StringBuffer[3];
         data2 = new String[3];
+        lat = new String[3];
+        lon = new String[3];
         String gpsX = String.valueOf(latitude);
         String gpsY = String.valueOf(longitude);
         String queryUrl="http://ws.bus.go.kr/api/rest/stationinfo/getStationByPos?"
@@ -205,6 +201,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         if(tag.equals("itemList")){
                             buffer[++count] = new StringBuffer();// 첫번째 검색결과
                             data2[count] = new String();
+                            lat[count] = new String();
+                            lon[count] = new String();
                         }
                         else if(tag.equals("stationNm")){
                             buffer[count].append("주소 : ");
@@ -215,12 +213,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         else if(tag.equals("gpsX")){
                             buffer[count].append("위도 : ");
                             xpp.next();
+                            lat[count] = xpp.getText();
                             buffer[count].append(xpp.getText());//category 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer[count].append("\n");//줄바꿈 문자 추가
                         }
                         else if(tag.equals("gpsY")){
                             buffer[count].append("경도 :");
                             xpp.next();
+                            lon[count] = xpp.getText();
                             buffer[count].append(xpp.getText());//description 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer[count].append("\n");//줄바꿈 문자 추가
                         }
@@ -252,17 +252,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }//getXmlData method....
 
-    @Override
-    public void onMapReady(final GoogleMap map) {
-        LatLng SEOUL = new LatLng(37.56, 126.97);
+        @Override
+        public void onMapReady ( final GoogleMap map){
+        LatLng SEOUL = new LatLng(latitude, longitude);
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SEOUL);
-        markerOptions.title("서울");
-        markerOptions.snippet("한국의 수도");
+        markerOptions.title("현재 내 위치");
         map.addMarker(markerOptions);
 
         map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        map.animateCamera(CameraUpdateFactory.zoomTo(10));
+        map.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 }
