@@ -1,6 +1,6 @@
 package com.example.administrator.csmap2;
 
-
+//ghoxa
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
