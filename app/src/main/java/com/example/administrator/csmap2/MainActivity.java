@@ -24,6 +24,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import org.xmlpull.v1.XmlPullParser;
@@ -34,7 +35,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
     Button text;
     Button text2;
     Button text3;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     StringBuffer[] data;
     String[] data2;
     GTSTracker gps = null;
-    private GoogleMap mMap;
     public Handler mHandler;
     String[] lat;
     String[] lon;
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static int SEND_PRINT = 2;
     double latitude = 0;
     double longitude = 0;
+    GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +58,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
         text = (Button) findViewById(R.id.text);
         text2 = (Button) findViewById(R.id.text2);
         text3 = (Button) findViewById(R.id.text3);
         if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
+                ContextCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions( this, new String[] {  Manifest.permission.ACCESS_FINE_LOCATION  },
                     0 );
         }
         mHandler = new Handler(){
@@ -150,18 +150,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             public void run() {
                                 // TODO Auto-generated method stub
                                 if (data[0] != null) {
-
+                                    double x = Double.parseDouble(lat[0]);
+                                    double y = Double.parseDouble(lon[0]);
+                                    LatLng SEOUL = new LatLng(y, x);
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(SEOUL);
+                                    markerOptions.title("서울");
+                                    markerOptions.snippet("한국의 수도");
+                                    mMap.addMarker(markerOptions);
                                     text.setText(data[0].toString());
                                 }
-                                if (data[1] != null) text2.setText(data[1].toString());
-                                if (data[2] != null) text3.setText(data[2].toString());
+                                if (data[1] != null) {
+                                    text2.setText(data[1].toString());
+                                    double x = Double.parseDouble(lat[1]);
+                                    double y = Double.parseDouble(lon[1]);
+                                    LatLng SEOUL = new LatLng(y, x);
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(SEOUL);
+                                    markerOptions.title("서울");
+                                    markerOptions.snippet("한국의 수도");
+                                    mMap.addMarker(markerOptions);
+                                }
+                                if (data[2] != null) {
+                                    text3.setText(data[2].toString());
+                                    double x = Double.parseDouble(lat[2]);
+                                    double y = Double.parseDouble(lon[2]) ;
+                                    LatLng SEOUL = new LatLng(y,x);
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(SEOUL);
+                                    markerOptions.title("서울");
+                                    markerOptions.snippet("한국의 수도");
+                                    mMap.addMarker(markerOptions);
+                                }
                             }
                         });
                     }
                 }).start();
         }
     }//mOnClick method..
-
 
     //XmlPullParser를 이용하여 Naver 에서 제공하는 OpenAPI XML 파일 파싱하기(parsing)
     StringBuffer[] getXmlData(){
@@ -173,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         String gpsY = String.valueOf(longitude);
         String queryUrl="http://ws.bus.go.kr/api/rest/stationinfo/getStationByPos?"
                 + "ServiceKey=vyLHMUmRFVa0oDbYG5LY8zGFg5rvRjZ1SKT7QPmd3PKVHfdwiEbO920ydibB%2F4C3LukkRYDZB069jAyGSEqoLw%3D%3D"
-                + "&tmX="+gpsY + "&tmY=" +gpsX+ "&radius=500";
+                + "&tmX="+gpsY + "&tmY="+gpsX + "&radius=500";
         try {
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is= url.openStream(); //url위치로 입력스트림 연결
@@ -226,7 +252,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
                         else if(tag.equals("arsId")) {
                             xpp.next();
-                            Log.e("test1",xpp.getText());
                             data2[count]=xpp.getText();
                         }
                         break;
@@ -251,14 +276,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return buffer;//StringBuffer 문자열 객체 반환
 
     }//getXmlData method....
-
-        @Override
-        public void onMapReady ( final GoogleMap map){
+    @Override
+    public void onMapReady ( final GoogleMap map){
+       mMap = map;
         LatLng SEOUL = new LatLng(latitude, longitude);
-
+        Log.e("test", String.valueOf(latitude));
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SEOUL);
-        markerOptions.title("현재 내 위치");
+        markerOptions.title("서울");
+        markerOptions.snippet("한국의 수도");
         map.addMarker(markerOptions);
 
         map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
