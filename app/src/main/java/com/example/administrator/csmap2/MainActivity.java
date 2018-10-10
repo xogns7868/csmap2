@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public Handler mHandler;
     String[] lat;
     String[] lon;
+    String[] locate;
     public static int RENEW_GPS = 1;
     public static int SEND_PRINT = 2;
     double latitude = 0;
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SubActivity.class);
-                intent.putExtra("text", data2[0].toString());
+                intent.putExtra("text", data2[0]);
                 intent.putExtra("text2", data2[1]);
                 intent.putExtra("text3", data2[2]);
                 startActivity(intent);
@@ -129,16 +130,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }else{
             gps.Update();
         }
-
     }
     public void mOnClick(View v){
-
         switch( v.getId() ) {
             case R.id.button:
-
                 //Android 4.0 이상 부터는 네트워크를 이용할 때 반드시 Thread 사용해야 함
                 new Thread(new Runnable() {
-
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
@@ -152,11 +149,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 if (data[0] != null) {
                                     double x = Double.parseDouble(lat[0]);
                                     double y = Double.parseDouble(lon[0]);
-                                    LatLng SEOUL = new LatLng(y, x);
+                                    LatLng First = new LatLng(y, x);
                                     MarkerOptions markerOptions = new MarkerOptions();
-                                    markerOptions.position(SEOUL);
-                                    markerOptions.title("서울");
-                                    markerOptions.snippet("한국의 수도");
+                                    markerOptions.position(First);
+                                    markerOptions.title("첫번째 정류장");
+                                    markerOptions.snippet(locate[0]);
                                     mMap.addMarker(markerOptions);
                                     text.setText(data[0].toString());
                                 }
@@ -167,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     LatLng SEOUL = new LatLng(y, x);
                                     MarkerOptions markerOptions = new MarkerOptions();
                                     markerOptions.position(SEOUL);
-                                    markerOptions.title("서울");
-                                    markerOptions.snippet("한국의 수도");
+                                    markerOptions.title("두번째 정류장");
+                                    markerOptions.snippet(locate[1]);
                                     mMap.addMarker(markerOptions);
                                 }
                                 if (data[2] != null) {
@@ -178,8 +175,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     LatLng SEOUL = new LatLng(y,x);
                                     MarkerOptions markerOptions = new MarkerOptions();
                                     markerOptions.position(SEOUL);
-                                    markerOptions.title("서울");
-                                    markerOptions.snippet("한국의 수도");
+                                    markerOptions.title("세번째 정류장");
+                                    markerOptions.snippet(locate[2]);
                                     mMap.addMarker(markerOptions);
                                 }
                             }
@@ -187,14 +184,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 }).start();
         }
-    }//mOnClick method..
-
+    }
     //XmlPullParser를 이용하여 Naver 에서 제공하는 OpenAPI XML 파일 파싱하기(parsing)
     StringBuffer[] getXmlData(){
         StringBuffer[] buffer=new StringBuffer[3];
         data2 = new String[3];
         lat = new String[3];
         lon = new String[3];
+        locate = new String[3];
         String gpsX = String.valueOf(latitude);
         String gpsY = String.valueOf(longitude);
         String queryUrl="http://ws.bus.go.kr/api/rest/stationinfo/getStationByPos?"
@@ -203,20 +200,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         try {
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is= url.openStream(); //url위치로 입력스트림 연결
-
             XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
             XmlPullParser xpp= factory.newPullParser();
             xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
-
             String tag;
-
             xpp.next();
             int eventType= xpp.getEventType();
             int count = -1;
-
             while( eventType != XmlPullParser.END_DOCUMENT && count != 3 ){
-
-
                 switch( eventType ){
                     case XmlPullParser.START_DOCUMENT:
                         //buffer.append("파싱 시작...\n\n");
@@ -229,25 +220,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             data2[count] = new String();
                             lat[count] = new String();
                             lon[count] = new String();
+                            locate[count] = new String();
                         }
                         else if(tag.equals("stationNm")){
                             buffer[count].append("주소 : ");
                             xpp.next();
-                            buffer[count].append(xpp.getText());//title 요소의 TEXT 읽어와서 문자열버퍼에 추가
+                            locate[count] = xpp.getText();
+                            buffer[count].append(xpp.getText());//statinNm 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer[count].append("\n"); //줄바꿈 문자 추가
                         }
                         else if(tag.equals("gpsX")){
                             buffer[count].append("위도 : ");
                             xpp.next();
                             lat[count] = xpp.getText();
-                            buffer[count].append(xpp.getText());//category 요소의 TEXT 읽어와서 문자열버퍼에 추가
+                            buffer[count].append(xpp.getText());//gpsX 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer[count].append("\n");//줄바꿈 문자 추가
                         }
                         else if(tag.equals("gpsY")){
                             buffer[count].append("경도 :");
                             xpp.next();
                             lon[count] = xpp.getText();
-                            buffer[count].append(xpp.getText());//description 요소의 TEXT 읽어와서 문자열버퍼에 추가
+                            buffer[count].append(xpp.getText());//gpsY 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer[count].append("\n");//줄바꿈 문자 추가
                         }
                         else if(tag.equals("arsId")) {
@@ -261,7 +254,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     case XmlPullParser.END_TAG:
                         tag= xpp.getName(); //테그 이름 얻어오기
-
                         if(tag.equals("itemList")) {
                             buffer[count].append("\n");
                         }// 첫번째 검색결과종료..줄바꿈
@@ -272,22 +264,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();
         }
-        //Log.e("test",buffer[1].toString());
         return buffer;//StringBuffer 문자열 객체 반환
 
     }//getXmlData method....
     @Override
     public void onMapReady ( final GoogleMap map){
        mMap = map;
-        LatLng SEOUL = new LatLng(latitude, longitude);
-        Log.e("test", String.valueOf(latitude));
+        LatLng LocateNow = new LatLng(latitude, longitude);
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(SEOUL);
-        markerOptions.title("서울");
-        markerOptions.snippet("한국의 수도");
+        markerOptions.position(LocateNow);
+        markerOptions.title("현재 내 위치");
         map.addMarker(markerOptions);
 
-        map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        map.animateCamera(CameraUpdateFactory.zoomTo(15));
+        map.moveCamera(CameraUpdateFactory.newLatLng(LocateNow));
+        map.animateCamera(CameraUpdateFactory.zoomTo(17));
     }
 }
