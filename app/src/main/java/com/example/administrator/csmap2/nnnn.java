@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.administrator.csmap2.fragment.ContentFragment;
+import com.example.administrator.csmap2.fragment.layout4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class nnnn extends AppCompatActivity implements ViewAnimator.ViewAnimator
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout3);
+
 
         contentFragment = ContentFragment.newInstance(R.drawable.content_music);
         getSupportFragmentManager().beginTransaction()

@@ -40,7 +40,7 @@
         <activity
             android:name=".nnnn"
             android:label="layout3" />
-        <activity android:name=".layout4"></activity>
+        <activity android:name=".fragment.layout4"></activity>
     </application>
 
 </manifest>

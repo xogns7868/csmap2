@@ -1,5 +1,6 @@
 package com.example.administrator.csmap2.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -8,9 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 
 import com.example.administrator.csmap2.R;
+import com.example.administrator.csmap2.nnnn;
 
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
@@ -28,7 +30,7 @@ public class ContentFragment extends Fragment implements ScreenShotable {
     public static final String MOVIE = "Movie";
 
     private View containerView;
-    protected ImageView mImageView;
+    protected Button mImageView;
     protected int res;
     private Bitmap bitmap;
 
@@ -49,7 +51,6 @@ public class ContentFragment extends Fragment implements ScreenShotable {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         res = getArguments().getInt(Integer.class.getName());
 
@@ -60,10 +61,15 @@ public class ContentFragment extends Fragment implements ScreenShotable {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        mImageView = (ImageView) rootView.findViewById(R.id.image_content);
-        mImageView.setClickable(true);
-        mImageView.setFocusable(true);
-        mImageView.setImageResource(res);
+        mImageView = (Button) rootView.findViewById(R.id.image_content);
+        mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent i = new Intent
+                            (ContentFragment.this.getActivity(), layout4.class);
+                    startActivity(i);
+                }
+        });
         return rootView;
     }
 
