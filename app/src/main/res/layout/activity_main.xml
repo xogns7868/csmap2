@@ -3,55 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dp">
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="200dp"
         android:layout_height="200dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <fragment
-            android:id="@+id/map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center_horizontal"
-            class="com.google.android.gms.maps.SupportMapFragment"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="search"
-            android:textSize="12sp"
-            android:onClick="mOnClick"/>
-    </LinearLayout>
-
+        android:onClick="OnClick"
+        android:text="버스 찾아주는 기능"/>
     <Button
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
-    <Button
-        android:id="@+id/text2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
-    <Button
-        android:id="@+id/text3"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:onClick="OnClick2"
+        android:text="학교 주변 시설 알아보기"/>
 
 </LinearLayout>

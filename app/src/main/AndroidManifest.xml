@@ -25,9 +25,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SubActivity" />
-        <activity android:name=".SubActivity2" />
-        <activity android:name=".SubActivity3" />
+        <activity
+            android:name=".SubActivity"
+            android:label="activity_sub" />
+        <activity
+            android:name=".SubActivity2"
+            android:label="activity_sub2" />
+        <activity
+            android:name=".SubActivity3"
+            android:label="activity_sub3" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="activity_main2" />
+        <activity
+            android:name=".nnnn"
+            android:label="layout3" />
+        <activity android:name=".layout4"></activity>
     </application>
 
 </manifest>

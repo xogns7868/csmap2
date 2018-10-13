@@ -194,21 +194,21 @@ public class GTSTracker extends Service implements LocationListener {
     @Override
     public void onProviderDisabled(String provider) {
         //Toast.makeText(mContext, "onProviderDisabled " + provider, Toast.LENGTH_SHORT).show();
-        mHandler.sendEmptyMessage(MainActivity.RENEW_GPS);
+        mHandler.sendEmptyMessage(Main2Activity.RENEW_GPS);
         sendString( "onProviderDisabled " + provider);
     }
 
     @Override
     public void onProviderEnabled(String provider) {
         //Toast.makeText(mContext, "onProviderEnabled " + provider, Toast.LENGTH_SHORT).show();
-        mHandler.sendEmptyMessage(MainActivity.RENEW_GPS);
+        mHandler.sendEmptyMessage(Main2Activity.RENEW_GPS);
         sendString( "onProviderEnabled " + provider);
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         //Toast.makeText(mContext, "onStatusChanged " + provider + " : " + status, Toast.LENGTH_SHORT).show();
-        mHandler.sendEmptyMessage(MainActivity.RENEW_GPS);
+        mHandler.sendEmptyMessage(Main2Activity.RENEW_GPS);
         sendString("onStatusChanged " + provider + " : " + status + ":" + printBundle(extras));
     }
 
@@ -219,7 +219,7 @@ public class GTSTracker extends Service implements LocationListener {
 
     private void sendString(String str){
         Message msg = mHandler.obtainMessage();
-        msg.what = MainActivity.SEND_PRINT;
+        msg.what = Main2Activity.SEND_PRINT;
         msg.obj = new String(str);
         mHandler.sendMessage(msg);
     }
@@ -242,10 +242,8 @@ public class GTSTracker extends Service implements LocationListener {
         } catch (Exception e) {
 
         } finally {
-
         }
         return sb.toString();
     }
-
 }
 
