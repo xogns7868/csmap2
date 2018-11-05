@@ -84,8 +84,6 @@ public class nnnn extends AppCompatActivity implements ViewAnimator.ViewAnimator
         list.add(menuItem5);
         SlideMenuItem menuItem6 = new SlideMenuItem(com.example.administrator.csmap2.fragment.ContentFragment.PARTY, R.drawable.icn_6);
         list.add(menuItem6);
-        SlideMenuItem menuItem7 = new SlideMenuItem(com.example.administrator.csmap2.fragment.ContentFragment.MOVIE, R.drawable.icn_7);
-        list.add(menuItem7);
     }
 
 

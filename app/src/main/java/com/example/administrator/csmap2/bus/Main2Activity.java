@@ -1,4 +1,4 @@
-package com.example.administrator.csmap2;
+package com.example.administrator.csmap2.bus;
 
 
 import android.Manifest;
@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.administrator.csmap2.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,7 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-import android.app.Activity;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -182,8 +184,9 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
             lat = new String[3];
             lon = new String[3];
             locate = new String[3];
-            String gpsX = String.valueOf(latitude);
-            String gpsY = String.valueOf(longitude);
+            String gpsX = "37.609692";
+            String gpsY = "126.997708";
+            Log.e("test", gpsY);
             String queryUrl="http://ws.bus.go.kr/api/rest/stationinfo/getStationByPos?"
                     + "ServiceKey=vyLHMUmRFVa0oDbYG5LY8zGFg5rvRjZ1SKT7QPmd3PKVHfdwiEbO920ydibB%2F4C3LukkRYDZB069jAyGSEqoLw%3D%3D"
                     + "&tmX="+gpsY + "&tmY=" + gpsX + "&radius=500";
@@ -260,7 +263,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         @Override
         public void onMapReady ( final GoogleMap map){
             mMap = map;
-            LatLng LocateNow = new LatLng(latitude, longitude);
+            LatLng LocateNow = new LatLng(37.609692,126.997708);
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(LocateNow);
             markerOptions.title("현재 내 위치");

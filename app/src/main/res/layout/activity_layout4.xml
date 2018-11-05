@@ -1,38 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".fragment.layout4">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:id="@+id/image_content"
-            android:src="@drawable/content_films"
-            android:scaleType="fitXY"/>
-        <TextView
+        <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="고씨네 카레"
-            android:textSize="30dp"/>
-        <TextView
+            android:id="@+id/scroll1">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="서울 성북구 정릉로10길 46"
-            android:textSize="30dp"/>
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/image1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/content_films"/>
+
+            <ImageButton
+                android:id="@+id/image2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/shirmp" />
+
+            <ImageButton
+                android:id="@+id/image3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/side_menu" />
+
+            <ImageButton
+                android:id="@+id/image4"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/menupan1" />
+        </LinearLayout>
+        </HorizontalScrollView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+        <ListView
+            android:id="@+id/detail_locate"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:dividerHeight="1.5dp"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"></ListView>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="02-909-1998"
-            android:textSize="30dp"/>
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/menupan1" />
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:text="메뉴 정보"/>
+        <ListView
+            android:id="@+id/detail_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="1.5dp"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"></ListView>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+</LinearLayout>

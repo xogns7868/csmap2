@@ -26,21 +26,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SubActivity"
+            android:name=".bus.SubActivity"
             android:label="activity_sub" />
         <activity
-            android:name=".SubActivity2"
+            android:name=".bus.SubActivity2"
             android:label="activity_sub2" />
         <activity
-            android:name=".SubActivity3"
+            android:name=".bus.SubActivity3"
             android:label="activity_sub3" />
         <activity
-            android:name=".Main2Activity"
+            android:name=".bus.Main2Activity"
             android:label="activity_main2" />
         <activity
             android:name=".nnnn"
             android:label="layout3" />
-        <activity android:name=".fragment.layout4"></activity>
+        <activity android:name=".fragment.layout4" />
+        <activity android:name=".bus.busdetail" />
+        <activity android:name=".Atm"></activity>
     </application>
 
 </manifest>

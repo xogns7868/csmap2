@@ -1,35 +1,21 @@
 package com.example.administrator.csmap2;
 
 //ghoxa
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.administrator.csmap2.fragment.ContentFragment;
+import com.example.administrator.csmap2.bus.Main2Activity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import io.codetail.animation.SupportAnimator;
-import io.codetail.animation.ViewAnimationUtils;
-import yalantis.com.sidemenu.interfaces.Resourceble;
-import yalantis.com.sidemenu.interfaces.ScreenShotable;
 import yalantis.com.sidemenu.model.SlideMenuItem;
 import yalantis.com.sidemenu.util.ViewAnimator;
 
@@ -46,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView imageView1 = (ImageView) findViewById(R.id.imageView1) ;
+        imageView1.setImageResource(R.drawable.final_logo) ;
 
         Button bt1 = (Button) findViewById(R.id.button1);
         bt1.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, nnnn.class);
+                startActivity(intent);
+            }
+        });
+        Button bt3 = (Button) findViewById(R.id.button3);
+        bt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Atm.class);
                 startActivity(intent);
             }
         });

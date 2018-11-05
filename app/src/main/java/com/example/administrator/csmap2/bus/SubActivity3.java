@@ -1,9 +1,11 @@
-package com.example.administrator.csmap2;
+package com.example.administrator.csmap2.bus;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.administrator.csmap2.R;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -11,21 +13,18 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class SubActivity2 extends AppCompatActivity {
+public class SubActivity3 extends AppCompatActivity {
     String data;
     TextView textView;
     String str;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub2);
+        setContentView(R.layout.activity_sub3);
         Intent intent = new Intent(this.getIntent());
-        str=intent.getStringExtra("text2");
-        textView=(TextView)findViewById(R.id.textview2);
-
+        str=intent.getStringExtra("text3");
+        textView=(TextView)findViewById(R.id.textview3);
         new Thread(new Runnable() {
 
             @Override
@@ -46,7 +45,9 @@ public class SubActivity2 extends AppCompatActivity {
         }).start();
 
     }
-    public String getXmlData(){
+
+
+    String getXmlData(){
         StringBuffer buffer=new StringBuffer();
         String arsId = str;
         String queryUrl="http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid?"
