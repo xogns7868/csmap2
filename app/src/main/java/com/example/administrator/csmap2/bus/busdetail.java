@@ -93,11 +93,19 @@ public class busdetail extends AppCompatActivity {
                         }
                         else if(tag.equals("beginTm")){
                             xpp.next();
-                            buffer[count].append("첫 차 : "+ xpp.getText() + "\n");
+                            if(!xpp.getText().equals(":")) {
+                                buffer[count].append("첫 차 : " + xpp.getText() + "\n");
+                            }
+                            else
+                                buffer[count].append("첫 차 : 정보가 없습니다. \n");
                         }
-                        else if(tag.equals("lastTm")){
+                        else if(tag.equals("lastTm")) {
                             xpp.next();
-                            buffer[count].append("막 차 : "+ xpp.getText() + "\n");
+                            if (!xpp.getText().equals(":")) {
+                                buffer[count].append("막 차 : " + xpp.getText() + "\n");
+                            }
+                            else
+                                buffer[count].append("막 차 : 정보가 없습니다. \n");
                         }
                         else if(tag.equals("stationNm")){
                             xpp.next();

@@ -6,92 +6,46 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
+import com.example.administrator.csmap2.Atm;
+import com.example.administrator.csmap2.MainActivity;
 import com.example.administrator.csmap2.R;
-import com.example.administrator.csmap2.nnnn;
+import com.example.administrator.csmap2.bus.Main2Activity;
 
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
 /**
  * Created by Konstantin on 22.12.2014.
  */
-public class ContentFragment extends Fragment implements ScreenShotable {
-    public static final String CLOSE = "Close";
-    public static final String BUILDING = "Building";
-    public static final String BOOK = "Book";
-    public static final String PAINT = "Paint";
-    public static final String CASE = "Case";
-    public static final String SHOP = "Shop";
-    public static final String PARTY = "Party";
-
-    private View containerView;
-    protected Button mImageView;
-    protected int res;
-    private Bitmap bitmap;
-
-    public static ContentFragment newInstance(int resId) {
-        ContentFragment contentFragment = new ContentFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(Integer.class.getName(), resId);
-        contentFragment.setArguments(bundle);
-        return contentFragment;
-    }
-
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        this.containerView = view.findViewById(R.id.container);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+public class ContentFragment extends AppCompatActivity {
+    private Button mImageView,mImageView2;
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        res = getArguments().getInt(Integer.class.getName());
-
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        mImageView = (Button) rootView.findViewById(R.id.image_content);
+        setContentView(R.layout.fragment_main);
+        mImageView = (Button)findViewById(R.id.image_content);
         mImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View arg0) {
-                    Intent i = new Intent
-                            (ContentFragment.this.getActivity(), layout4.class);
-                    startActivity(i);
-                }
-        });
-        return rootView;
-    }
-
-    @Override
-    public void takeScreenShot() {
-        Thread thread = new Thread() {
             @Override
-            public void run() {
-                Bitmap bitmap = Bitmap.createBitmap(containerView.getWidth(),
-                        containerView.getHeight(), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bitmap);
-                containerView.draw(canvas);
-                ContentFragment.this.bitmap = bitmap;
+            public void onClick(View arg0) {
+                Intent i = new Intent
+                        (ContentFragment.this, layout4.class);
+                startActivity(i);
             }
-        };
-
-        thread.start();
-
-    }
-
-    @Override
-    public Bitmap getBitmap() {
-        return bitmap;
+        });
+        mImageView2 = (Button) findViewById(R.id.image_content2);
+        mImageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent
+                        (ContentFragment.this, layout5.class);
+                startActivity(i);
+            }
+        });
     }
 }
 

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".fragment.layout4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scroll1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageButton
+                    android:id="@+id/image1"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bukak_main"/>
+
+                <ImageButton
+                    android:id="@+id/image2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bukak2" />
+
+                <ImageButton
+                    android:id="@+id/image3"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bukak3" />
+
+                <ImageButton
+                    android:id="@+id/image4"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bukak4" />
+            </LinearLayout>
+        </HorizontalScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <ListView
+                android:id="@+id/detail_locate"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:dividerHeight="1.5dp"
+                android:footerDividersEnabled="true"
+                android:headerDividersEnabled="true"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"
+                android:text="메뉴 정보"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="visible">
+                <ListView
+                    android:id="@+id/detail_menu"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="238dp"
+                    android:dividerHeight="1.5dp"
+                    android:footerDividersEnabled="true"
+                    android:headerDividersEnabled="true"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
+                <ListView
+                    android:id="@+id/detail_price"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="238dp"
+                    android:dividerHeight="1.5dp"
+                    android:footerDividersEnabled="true"
+                    android:headerDividersEnabled="true"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="댓글 남기기" />
+
+                <ListView
+                    android:id="@+id/chat_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="203dp" />
+
+                <EditText
+                    android:id="@+id/chat_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/chat_sent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="send" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

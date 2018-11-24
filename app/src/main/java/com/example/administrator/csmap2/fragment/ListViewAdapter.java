@@ -16,14 +16,23 @@ import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
     private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
-
-    // ListViewAdapter의 생성자
+    private static final int ITEM_VIEW_TYPE_STRS = 0 ;
+    private static final int ITEM_VIEW_TYPE_IMGS = 1 ;
+    private static final int ITEM_VIEW_TYPE_MAX = 2 ;
+// ListViewAdapter의 생성자
     public ListViewAdapter() {
 
     }
 
+    public int getViewTypeCount() {
+        return ITEM_VIEW_TYPE_MAX ;
+    }
     // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
     @Override
+    public int getItemViewType(int position) {
+        return listViewItemList.get(position).getType() ;
+    }
+@Override
     public int getCount() {
         return listViewItemList.size() ;
     }
@@ -33,15 +42,33 @@ public class ListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos = position;
         final Context context = parent.getContext();
+        int viewType = getItemViewType(position) ;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_item, parent, false);
+            ListViewItem listViewItem = listViewItemList.get(position);
+            switch(viewType) {
+                case ITEM_VIEW_TYPE_STRS:
+                    convertView = inflater.inflate(R.layout.listview_item, parent, false);
+                    ImageView iconImageView = (ImageView) convertView.findViewById(R.id.imageView1);
+                    TextView titleTextView = (TextView) convertView.findViewById(R.id.textView1);
+
+                    iconImageView.setImageDrawable(listViewItem.getIcon());
+                    titleTextView.setText(listViewItem.getTitle());
+                    break;
+
+                case ITEM_VIEW_TYPE_IMGS:
+                    convertView = inflater.inflate(R.layout.busllist,
+                            parent, false);
+
+                    TextView arsIdText = (TextView) convertView.findViewById(R.id.arsId);
+                    TextView descTextView = (TextView) convertView.findViewById(R.id.desc);
+
+                    arsIdText.setText(listViewItem.getTitle());
+                    descTextView.setText(listViewItem.getContext());
+                    break;
+            }
         }
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.imageView1) ;
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.textView1) ;
         ListViewItem listViewItem = listViewItemList.get(position);
-        iconImageView.setImageDrawable(listViewItem.getIcon());
-        titleTextView.setText(listViewItem.getTitle());
         return convertView;
     }
     @Override
@@ -54,13 +81,22 @@ public class ListViewAdapter extends BaseAdapter {
     }
     public void addItem(Drawable icon, String title) {
         ListViewItem item = new ListViewItem();
+        item.setType(ITEM_VIEW_TYPE_STRS);
         item.setIcon(icon);
         item.setTitle(title);
         listViewItemList.add(item);
     }
     public void addItem(String title) {
         ListViewItem item = new ListViewItem();
+        item.setType(ITEM_VIEW_TYPE_STRS);
         item.setTitle(title);
+        listViewItemList.add(item);
+    }
+    public void addItem(String title, String text) {
+        ListViewItem item = new ListViewItem();
+        item.setType(ITEM_VIEW_TYPE_IMGS);
+        item.setTitle(title);
+        item.setContext(text);
         listViewItemList.add(item);
     }
 }

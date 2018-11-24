@@ -34,7 +34,7 @@ public class SubActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub2);
         Intent intent = new Intent(this.getIntent());
-        str=intent.getStringExtra("text2");
+        str=intent.getStringExtra("arsId");
         if(mListView ==null){
             mListView = (ListView) findViewById(R.id.textview2);
         }

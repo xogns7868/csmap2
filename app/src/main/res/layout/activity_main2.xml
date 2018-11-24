@@ -6,17 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     android:padding="10dp">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="225dp"
         android:orientation="horizontal"
         android:weightSum="10">
 
         <fragment
             android:id="@+id/map"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
             class="com.google.android.gms.maps.SupportMapFragment"/>
@@ -24,34 +25,26 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="75dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/button"
             android:layout_width="100dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:text="search"
             android:textSize="12sp"
             android:onClick="mOnClick"/>
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/text"
+    </LinearLayout>
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
-    <Button
-        android:id="@+id/text2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
-    <Button
-        android:id="@+id/text3"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:layout_height="match_parent"
+        android:id="@+id/listview1"
+        android:dividerHeight="1.5dp"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </LinearLayout>

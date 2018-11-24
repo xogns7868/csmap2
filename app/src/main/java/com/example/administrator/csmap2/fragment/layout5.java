@@ -1,22 +1,18 @@
 package com.example.administrator.csmap2.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
 import com.example.administrator.csmap2.R;
 import com.google.android.gms.auth.api.Auth;
@@ -31,7 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class layout5 extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth mAuth;
     GoogleApiClient mGoogleApiClient;
@@ -43,7 +39,6 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
     private ListView chat_view;
     private EditText chat_edit;
     private Button chat_send;
-    private ScrollView scrollView;
     ListView mListView,mListView2,mListView3;
     ListViewAdapter adapter,adapter2,adapter3,adapter4;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -55,7 +50,7 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout4);
+        setContentView(R.layout.layout5);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -69,7 +64,6 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
         chat_edit = (EditText) findViewById(R.id.chat_edit);
         chat_send = (Button) findViewById(R.id.chat_sent);
         user = mAuth.getCurrentUser();
-        scrollView = (ScrollView)findViewById(R.id.mainscroll);
         adapter = new ListViewAdapter();
         adapter2 = new ListViewAdapter();
         adapter3 = new ListViewAdapter();
@@ -82,8 +76,8 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
         mListView3.setAdapter(adapter4);
         chat_view.setAdapter(adapter3);
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.locate_icon),"서울특별시 성북구 정릉동 891-1");
-        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.phone_icon),"02-909-1998");
-        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.clock_icon),"매일 11:30 - 20:30 연중무휴");
+        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.phone_icon),"02-913-9702");
+        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.clock_icon),"매일 09:00 - 21:00 연중무휴");
         adapter2.addItem("돈까스 카레");
         adapter2.addItem("프리미엄 스페셜 카레");
         adapter2.addItem("돈까스 카레 우동");
@@ -99,24 +93,21 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
         ImageButton.OnClickListener onClickListener = new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog = new Dialog(layout4.this);
+                Dialog dialog = new Dialog(layout5.this);
                 dialog.setContentView(R.layout.activity_fullimage);
                 ImageView iv = (ImageView) dialog.findViewById(R.id.image);
                 switch(view.getId()){
                     case R.id.image1 :
-                        iv.setImageResource(R.drawable.gossy);
+                        iv.setImageResource(R.drawable.bukak_main);
                         break;
-                        case R.id.image2:
-                            iv.setImageResource(R.drawable.shirmp);
-                            break;
+                    case R.id.image2:
+                        iv.setImageResource(R.drawable.bukak2);
+                        break;
                     case R.id.image3:
-                        iv.setImageResource(R.drawable.side_menu);
+                        iv.setImageResource(R.drawable.bukak3);
                         break;
                     case R.id.image4:
-                        iv.setImageResource(R.drawable.special);
-                        break;
-                    case R.id.image5:
-                        iv.setImageResource(R.drawable.menupan1);
+                        iv.setImageResource(R.drawable.bukak4);
                         break;
                 }
                 dialog.show();
@@ -126,6 +117,10 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
             @Override
             public void onClick(View v) {
                 signIn();
+                if(user!=null){
+                    CHAT_NAME = user.getDisplayName();
+                    USER_NAME = user.getEmail();
+                }
             }
         });
 
@@ -134,10 +129,9 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
             public void onClick(View v){
                 if(chat_edit.getText().toString().equals(""))
                     return;
-                    CHAT_NAME = user.getDisplayName();
-                    USER_NAME = user.getEmail();
-                ChatDTO chat = new ChatDTO(CHAT_NAME, chat_edit.getText().toString());
-                databaseReference.child("고씨네").push().setValue(chat);
+
+                ChatDTO chat = new ChatDTO(USER_NAME, chat_edit.getText().toString());
+                databaseReference.child("북악루").push().setValue(chat);
                 chat_edit.setText("");
             }
         });
@@ -149,19 +143,11 @@ public class layout4 extends AppCompatActivity implements GoogleApiClient.OnConn
         button3.setOnClickListener(onClickListener);
         ImageButton button4 = (ImageButton)findViewById(R.id.image4);
         button4.setOnClickListener(onClickListener);
-        databaseReference.child("고씨네").addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
-            @SuppressLint("ClickableViewAccessibility")
+        databaseReference.child("북악루").addChildEventListener(new ChildEventListener() {  // message는 child의 이벤트를 수신합니다.
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatDTO chatData = dataSnapshot.getValue(ChatDTO.class);  // chatData를 가져오고
                 adapter3.addItem(chatData.getUserName() + ": " + chatData.getMessage());  // adapter에 추가합니다.
-                chat_view.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        scrollView.requestDisallowInterceptTouchEvent(true);
-                        return false;
-                    }
-                });
             }
 
             @Override

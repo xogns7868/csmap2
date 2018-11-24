@@ -13,9 +13,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.administrator.csmap2.R;
+import com.example.administrator.csmap2.fragment.ListViewAdapter;
+import com.example.administrator.csmap2.fragment.ListViewItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,12 +33,12 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main2Activity extends AppCompatActivity implements OnMapReadyCallback {
-        Button text;
-        Button text2;
-        Button text3;
-        XmlPullParser xpp;
+        ListView listView;
+        ListViewAdapter adapter;
         StringBuffer[] data;
         String[] data2;
         GTSTracker gps = null;
@@ -53,9 +58,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
-            text = (Button) findViewById(R.id.text);
-            text2 = (Button) findViewById(R.id.text2);
-            text3 = (Button) findViewById(R.id.text3);
+            listView = (ListView) findViewById(R.id.listview1);
             if ( Build.VERSION.SDK_INT >= 23 &&
                     ContextCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions( this, new String[] {  Manifest.permission.ACCESS_FINE_LOCATION  },
@@ -91,30 +94,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                 // Ask user to enable GPS/network in settings
                 gps.showSettingsAlert();
             }
-            text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Main2Activity.this, SubActivity.class);
-                    intent.putExtra("text", data2[0]);
-                    startActivity(intent);
-                }
-            });
-            text2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Main2Activity.this, SubActivity2.class);
-                    intent.putExtra("text2", data2[1]);
-                    startActivity(intent);
-                }
-            });
-            text3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Main2Activity.this, SubActivity3.class);
-                    intent.putExtra("text3", data2[2]);
-                    startActivity(intent);
-                }
-            });
+
         }
         public void makeNewGpsService(){
             if(gps == null) {
@@ -137,6 +117,17 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    adapter = new ListViewAdapter();
+                                    listView.setAdapter(adapter);
+                                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            Intent intent = new Intent(getApplicationContext(),SubActivity2.class);
+
+                                            intent.putExtra("arsId",data2[position]);
+                                            startActivity(intent);
+                                        }
+                                    });
                                     // TODO Auto-generated method stub
                                     if (data[0] != null) {
                                         double x = Double.parseDouble(lat[0]);
@@ -147,10 +138,13 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                                         markerOptions.title("첫번째 정류장");
                                         markerOptions.snippet(locate[0]);
                                         mMap.addMarker(markerOptions);
-                                        text.setText(data[0].toString());
+                                        int length = data[0].length();
+                                        String replace = data[0].toString().replace("\n","   ");
+                                        adapter.addItem(data[0].toString().substring(0,6),data[0].toString().substring(6,length));
                                     }
                                     if (data[1] != null) {
-                                        text2.setText(data[1].toString());
+                                        int length = data[1].length();
+                                        adapter.addItem(data[1].toString().substring(0,6),data[1].toString().substring(6,length));
                                         double x = Double.parseDouble(lat[1]);
                                         double y = Double.parseDouble(lon[1]);
                                         LatLng Second = new LatLng(y, x);
@@ -161,7 +155,8 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                                         mMap.addMarker(markerOptions);
                                     }
                                     if (data[2] != null) {
-                                        text3.setText(data[2].toString());
+                                        int length = data[2].length();
+                                        adapter.addItem(data[2].toString().substring(0,6),data[2].toString().substring(6,length));
                                         double x = Double.parseDouble(lat[2]);
                                         double y = Double.parseDouble(lon[2]) ;
                                         LatLng Third = new LatLng(y,x);
@@ -172,6 +167,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                                         mMap.addMarker(markerOptions);
                                     }
                                 }
+
                             });
                         }
                     }).start();
@@ -216,29 +212,24 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                                 locate[count] = new String();
                             }
                             else if(tag.equals("stationNm")){
-                                buffer[count].append("정류장 이름 : ");
                                 xpp.next();
                                 locate[count] = xpp.getText();
-                                buffer[count].append(xpp.getText());//statinNm 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                                buffer[count].append("\n"); //줄바꿈 문자 추가
+                                buffer[count].append(xpp.getText());
                             }
                             else if(tag.equals("gpsX")){
                                 xpp.next();
                                 lat[count] = xpp.getText();
-                                buffer[count].append("\n");//줄바꿈 문자 추가
-                            }
+                                }
                             else if(tag.equals("gpsY")){
                                 xpp.next();
                                 lon[count] = xpp.getText();
-                                buffer[count].append("\n");//줄바꿈 문자 추가
-                            }
+                                }
                             else if(tag.equals("arsId")) {
                                 xpp.next();
                                 data2[count]=xpp.getText();
                                 buffer[count].append(xpp.getText().substring(0,2));
                                 buffer[count].append("-");
                                 buffer[count].append(xpp.getText().substring(2,5));
-
                             }
                             break;
 
@@ -248,8 +239,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                         case XmlPullParser.END_TAG:
                             tag= xpp.getName(); //테그 이름 얻어오기
                             if(tag.equals("itemList")) {
-                                buffer[count].append("\n");
-                            }// 첫번째 검색결과종료..줄바꿈
+                            }
                             break;
                     }
                     eventType= xpp.next();

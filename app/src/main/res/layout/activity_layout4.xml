@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainscroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="#FFFFFF"
     tools:context=".fragment.layout4">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <HorizontalScrollView
@@ -47,11 +49,17 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/special" />
+            <ImageButton
+                android:id="@+id/image5"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/menupan1" />
         </LinearLayout>
         </HorizontalScrollView>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="visible">
@@ -63,23 +71,74 @@
             android:footerDividersEnabled="true"
             android:headerDividersEnabled="true"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"></ListView>
+            tools:layout_editor_absoluteY="0dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="메뉴 정보"/>
-        <ListView
-            android:id="@+id/detail_menu"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="visible">
+        <ListView
+            android:id="@+id/detail_menu"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="238dp"
             android:dividerHeight="1.5dp"
             android:footerDividersEnabled="true"
             android:headerDividersEnabled="true"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"></ListView>
-    </LinearLayout>
+            tools:layout_editor_absoluteY="0dp" />
+            <ListView
+            android:id="@+id/detail_price"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="238dp"
+            android:dividerHeight="1.5dp"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/sign_in_button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="댓글 남기기" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <EditText
+                android:id="@+id/chat_edit"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/chat_sent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="send" />
+            </LinearLayout>
+                <ListView
+                    android:id="@+id/chat_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp" />
+        </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

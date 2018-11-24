@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.csmap2.bus.Main2Activity;
+import com.example.administrator.csmap2.fragment.ContentFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,20 +23,9 @@ import yalantis.com.sidemenu.util.ViewAnimator;
 
 
 public class MainActivity extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle drawerToggle;
-    private List<SlideMenuItem> list = new ArrayList<>();
-    private com.example.administrator.csmap2.fragment.ContentFragment contentFragment;
-    private ViewAnimator viewAnimator;
-    private int res = R.drawable.content_music;
-    private LinearLayout linearLayout;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView imageView1 = (ImageView) findViewById(R.id.imageView1) ;
-        imageView1.setImageResource(R.drawable.final_logo) ;
-
         Button bt1 = (Button) findViewById(R.id.button1);
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,16 +34,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Button bt2 = (Button) findViewById(R.id.button2);
-        bt2.setOnClickListener(new View.OnClickListener() {
+        Button bt3 = (Button) findViewById(R.id.button3);
+        bt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, nnnn.class);
+                Intent intent = new Intent(MainActivity.this, computer.class);
                 startActivity(intent);
             }
         });
-        Button bt3 = (Button) findViewById(R.id.button3);
-        bt3.setOnClickListener(new View.OnClickListener() {
+        Button bt4 = (Button) findViewById(R.id.button4);
+        bt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ContentFragment.class);
+                startActivity(intent);
+            }
+        });
+        Button bt5 = (Button) findViewById(R.id.button5);
+        bt5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Atm.class);

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "65735448529",
+    "firebase_url": "https://csmap2-e5f6b.firebaseio.com",
+    "project_id": "csmap2-e5f6b",
+    "storage_bucket": "csmap2-e5f6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65735448529:android:33b5c9861c0f6f26",
+        "android_client_info": {
+          "package_name": "com.example.administrator.csmap2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65735448529-9u216fj0arokkrq27ksmqj4o8u17vu0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4dWgr6nCy0fIZCaB_q2sVb7VxHtxxcwM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
