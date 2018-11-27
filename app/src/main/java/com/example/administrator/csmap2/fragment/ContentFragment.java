@@ -24,7 +24,7 @@ import yalantis.com.sidemenu.interfaces.ScreenShotable;
  * Created by Konstantin on 22.12.2014.
  */
 public class ContentFragment extends AppCompatActivity {
-    private Button mImageView,mImageView2;
+    private Button mImageView,mImageView2,mImageView3,mImageView4,mImageView5;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
@@ -39,6 +39,33 @@ public class ContentFragment extends AppCompatActivity {
         });
         mImageView2 = (Button) findViewById(R.id.image_content2);
         mImageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent
+                        (ContentFragment.this, layout5.class);
+                startActivity(i);
+            }
+        });
+        mImageView3 = (Button) findViewById(R.id.image_content3);
+        mImageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent
+                        (ContentFragment.this, layout5.class);
+                startActivity(i);
+            }
+        });
+        mImageView4= (Button) findViewById(R.id.image_content4);
+        mImageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent
+                        (ContentFragment.this, layout5.class);
+                startActivity(i);
+            }
+        });
+        mImageView5= (Button) findViewById(R.id.image_content5);
+        mImageView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 Intent i = new Intent

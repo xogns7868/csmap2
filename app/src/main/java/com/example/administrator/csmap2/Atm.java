@@ -11,7 +11,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,10 +27,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class Atm extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     GoogleMap mMap;
-    ListView listview;
-    ListViewAdapter adapter;
+    ExpandableListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,49 @@ public class Atm extends FragmentActivity implements OnMapReadyCallback, GoogleM
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        listview = (ListView) findViewById(R.id.atm_detail);
+        mapFragment.getMapAsync(this);
+        Display newDisplay = getWindowManager().getDefaultDisplay();
+        int width = newDisplay.getWidth();
+        ArrayList<myGroup> DataList = new ArrayList<myGroup>();
+        listView = (ExpandableListView)findViewById(R.id.atm_detail);
+        myGroup temp = new myGroup("북악관");
+        temp.child.add("은행 : 우리은행, 신한은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("과학관");
+        temp.child.add("은행 : 우리은행, KB국민은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("본부관");
+        temp.child.add("은행 : 우리은행, KB국민은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("국제관");
+        temp.child.add("은행 : 우리은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("경영관");
+        temp.child.add("은행 : 우리은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("법학관");
+        temp.child.add("은행 : 우리은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("공학관");
+        temp.child.add("은행 : 우리은행, KB국민은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("예술관");
+        temp.child.add("은행 : KB국민은행");
+        temp.child.add("위치 : ");
+        DataList.add(temp);
+        temp = new myGroup("복지관");
+        temp.child.add("은행 : 우체국, 우리은행");
+        temp.child.add("위치 : ");
+        ExpandAdapter adapter = new ExpandAdapter(getApplicationContext(),R.layout.group_row,R.layout.child_row,DataList);
+        listView.setIndicatorBounds(width-50, width); //이 코드를 지우면 화살표 위치가 바뀐다.
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -45,8 +90,14 @@ public class Atm extends FragmentActivity implements OnMapReadyCallback, GoogleM
         LatLng LocateNow = new LatLng(37.611244,126.996924);
         LatLng bookak = new LatLng(37.612238,126.996820);
         LatLng science = new LatLng(37.611760, 126.999217);
-        LatLng seven = new LatLng(37.610008,126.997071);
+        LatLng center = new LatLng(37.611580, 126.997609);
         LatLng engineering = new LatLng(37.611750, 126.993917);
+        LatLng art = new LatLng(37.610115, 126.997853);
+        LatLng bokji = new LatLng(37.610453, 126.995992);
+        LatLng law = new LatLng(37.611272, 126.998209);
+        LatLng economic = new LatLng(37.610806, 126.997612);
+        LatLng itn = new LatLng(37.611170, 126.996965);
+        LatLng lib = new LatLng(37.612679, 126.993614);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions
                 .position(bookak)
@@ -57,14 +108,37 @@ public class Atm extends FragmentActivity implements OnMapReadyCallback, GoogleM
                 .title("과학관");
         mMap.addMarker(markerOptions);
         markerOptions
-                .position(seven)
-                .title("7호관");
+                .position(center)
+                .title("본부관");
         mMap.addMarker(markerOptions);
         markerOptions
                 .position(engineering)
                 .title("공학관");
         mMap.addMarker(markerOptions);
-
+        markerOptions
+                .position(art)
+                .title("예술관");
+        mMap.addMarker(markerOptions);
+        markerOptions
+                .position(bokji)
+                .title("복지관");
+        mMap.addMarker(markerOptions);
+        markerOptions
+                .position(law)
+                .title("법학관");
+        mMap.addMarker(markerOptions);
+        markerOptions
+                .position(economic)
+                .title("경영관");
+        mMap.addMarker(markerOptions);
+        markerOptions
+                .position(lib)
+                .title("도서관");
+        mMap.addMarker(markerOptions);
+        markerOptions
+                .position(itn)
+                .title("국제관");
+        mMap.addMarker(markerOptions);
         mMap.setOnMarkerClickListener(this);
         map.moveCamera(CameraUpdateFactory.newLatLng(LocateNow));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(LocateNow, 17), 1, null);
@@ -72,20 +146,6 @@ public class Atm extends FragmentActivity implements OnMapReadyCallback, GoogleM
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        adapter = new ListViewAdapter();
-        listview.setAdapter(adapter);
-        if(String.valueOf(marker.getTitle()).equals("과학관")) {
-            adapter.addItem(ContextCompat.getDrawable(this,R.drawable.bank),"우리 은행");
-        }
-        else if(String.valueOf(marker.getTitle()).equals("북악관")) {
-            adapter.addItem(ContextCompat.getDrawable(this,R.drawable.clock_icon),"매일 11:30 - 20:30연중무휴");
-        }
-        else if(String.valueOf(marker.getTitle()).equals("7호관")) {
-            adapter.addItem(ContextCompat.getDrawable(this,R.drawable.clock_icon),"매일 11:30 - 20:30연중무휴");
-        }
-        else if(String.valueOf(marker.getTitle()).equals("공학관")) {
-            adapter.addItem(ContextCompat.getDrawable(this,R.drawable.clock_icon),"매일 11:30 - 20:30연중무휴");
-        }
         return true;
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".Atm">
 
@@ -13,14 +14,9 @@
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         class="com.google.android.gms.maps.SupportMapFragment"/>
-    <ListView
+    <ExpandableListView
         android:id="@+id/atm_detail"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:dividerHeight="1.5dp"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"></ListView>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
