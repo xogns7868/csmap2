@@ -43,7 +43,7 @@ public class ListViewAdapter extends BaseAdapter {
         final int pos = position;
         final Context context = parent.getContext();
         int viewType = getItemViewType(position) ;
-        if (convertView == null) {
+
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ListViewItem listViewItem = listViewItemList.get(position);
             switch(viewType) {
@@ -67,8 +67,6 @@ public class ListViewAdapter extends BaseAdapter {
                     descTextView.setText(listViewItem.getContext());
                     break;
             }
-        }
-        ListViewItem listViewItem = listViewItemList.get(position);
         return convertView;
     }
     @Override

@@ -2,48 +2,78 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <Button
+                <ImageButton
                     android:id="@+id/image_content"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:background="@drawable/gossy_main"
                     android:focusableInTouchMode="true"
                     android:padding="0dp"
                     android:scaleType="fitXY" />
-                <Button
+                <ImageButton
                     android:id="@+id/image_content2"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:background="@drawable/bukakroo_main"
-                    android:focusableInTouchMode="true"
+                     android:focusableInTouchMode="true"
                     android:padding="0dp"
                     android:scaleType="fitXY" />
-                <Button
+                <ImageButton
                     android:id="@+id/image_content3"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:background="@drawable/s_chicken"
-                    android:focusableInTouchMode="true"
+                     android:focusableInTouchMode="true"
                     android:padding="0dp"
                     android:scaleType="fitXY" />
-                <Button
+                <ImageButton
                     android:id="@+id/image_content4"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:background="@drawable/sheep"
-                    android:focusableInTouchMode="true"
+                     android:focusableInTouchMode="true"
                    android:padding="0dp"
                     android:scaleType="fitXY" />
-                <Button
+                <ImageButton
                     android:id="@+id/image_content5"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:background="@drawable/chicken"
+                     android:focusableInTouchMode="true"
+                    android:padding="0dp"
+                    android:scaleType="fitXY" />
+                <ImageButton
+                    android:id="@+id/image_content6"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:focusableInTouchMode="true"
+                    android:padding="0dp"
+                    android:scaleType="fitXY" />
+                <ImageButton
+                    android:id="@+id/image_content7"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:focusableInTouchMode="true"
+                    android:padding="0dp"
+                    android:scaleType="fitXY" />
+                <ImageButton
+                    android:id="@+id/image_content8"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:focusableInTouchMode="true"
+                    android:padding="0dp"
+                    android:scaleType="fitXY" />
+                <ImageButton
+                    android:id="@+id/image_content9"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                     android:focusableInTouchMode="true"
+                    android:padding="0dp"
+                    android:scaleType="fitXY" />
+                <ImageButton
+                    android:id="@+id/image_content10"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
                     android:focusableInTouchMode="true"
                     android:padding="0dp"
                     android:scaleType="fitXY" />

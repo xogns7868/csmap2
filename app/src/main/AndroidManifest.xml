@@ -10,7 +10,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="CS Map"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -30,9 +30,25 @@
         <activity android:name=".bus.Main2Activity" />
         <activity android:name=".fragment.layout4" />
         <activity android:name=".fragment.layout5" />
+        <activity android:name=".fragment.re3" />
+        <activity android:name=".fragment.re4" />
+        <activity android:name=".fragment.re5" />
+        <activity android:name=".fragment.re6" />
+        <activity android:name=".fragment.re7" />
+        <activity android:name=".fragment.re8" />
+        <activity android:name=".fragment.re9" />
+        <activity android:name=".fragment.re10" />
         <activity android:name=".bus.busdetail" />
         <activity android:name=".Atm" />
-        <activity android:name=".computer"></activity>
+        <activity android:name=".computer" />
+        <activity android:name=".caffe.Caffe" />
+        <activity android:name=".caffe.caffe1" />
+        <activity android:name=".caffe.caffe2" />
+        <activity android:name=".caffe.caffe3" />
+        <activity android:name=".caffe.caffe4" />
+        <activity android:name=".caffe.caffe5" />
+        <activity android:name=".caffe.caffe6" />
+        <activity android:name=".etc"></activity>
     </application>
 
 </manifest>

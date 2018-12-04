@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainscroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true"
     android:background="#FFFFFF"
     tools:context=".fragment.layout4">
@@ -27,40 +27,30 @@
                 android:id="@+id/image1"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/content_films"/>
+                android:scaleType="centerCrop" />
 
             <ImageButton
                 android:id="@+id/image2"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/shirmp" />
+                android:scaleType="centerCrop" />
 
             <ImageButton
                 android:id="@+id/image3"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/side_menu" />
+                android:scaleType="centerCrop" />
 
             <ImageButton
                 android:id="@+id/image4"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/special" />
-            <ImageButton
-                android:id="@+id/image5"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/menupan1" />
+                android:scaleType="centerCrop" />
         </LinearLayout>
         </HorizontalScrollView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="visible">
         <ListView
@@ -77,68 +67,70 @@
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
-            android:text="메뉴 정보"/>
+            android:text="Menu"/>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="visible">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <ListView
             android:id="@+id/detail_menu"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="238dp"
             android:dividerHeight="1.5dp"
-            android:footerDividersEnabled="true"
-            android:headerDividersEnabled="true"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:scrollbars="none"/>
             <ListView
-            android:id="@+id/detail_price"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="238dp"
-            android:dividerHeight="1.5dp"
-            android:footerDividersEnabled="true"
-            android:headerDividersEnabled="true"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+                android:id="@+id/detail_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="238dp"
+                android:layout_gravity="right"
+                android:dividerHeight="1.5dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/sign_in_button"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="댓글 남기기" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <EditText
-                android:id="@+id/chat_edit"
-                android:layout_width="0dp"
-                android:layout_weight="4"
-                android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/chat_sent"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="send" />
-            </LinearLayout>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:textSize="20dp"
+                    android:text="Comment"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/chat_edit"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    />
+                <Button
+                    android:id="@+id/chat_sent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="send" />
+
+                </LinearLayout>
                 <ListView
                     android:id="@+id/chat_view"
                     android:layout_width="fill_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="200dp"
+                   />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
-
-
     </LinearLayout>
 </ScrollView>

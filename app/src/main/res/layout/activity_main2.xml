@@ -23,18 +23,19 @@
             class="com.google.android.gms.maps.SupportMapFragment"/>
 
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="75dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/button"
-            android:layout_width="100dp"
+            android:layout_width="250dp"
             android:layout_height="50dp"
-            android:text="search"
-            android:textSize="12sp"
-            android:onClick="mOnClick"/>
+            android:onClick="mOnClick"
+            android:background="@drawable/search"
+            android:textSize="12sp" />
 
     </LinearLayout>
     <ListView

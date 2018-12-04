@@ -12,14 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.csmap2.bus.Main2Activity;
+import com.example.administrator.csmap2.caffe.Caffe;
 import com.example.administrator.csmap2.fragment.ContentFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import yalantis.com.sidemenu.model.SlideMenuItem;
-import yalantis.com.sidemenu.util.ViewAnimator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(intent);
+            }
+        });
+        Button bt2 = (Button) findViewById(R.id.button2);
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Caffe.class);
                 startActivity(intent);
             }
         });
@@ -55,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Atm.class);
+                startActivity(intent);
+            }
+        });
+        Button bt6 = (Button) findViewById(R.id.button6);
+        bt6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, etc.class);
                 startActivity(intent);
             }
         });

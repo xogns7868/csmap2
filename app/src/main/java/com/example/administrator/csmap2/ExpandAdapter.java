@@ -47,7 +47,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         }
         TextView childName = (TextView)convertView.findViewById(R.id.childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
-        return convertView;
+       return convertView;
     }
     @Override
     public boolean hasStableIds() {

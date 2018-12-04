@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/image_content"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitXY" />
+        <ImageButton
+            android:id="@+id/image_content2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitXY" />
+        <ImageButton
+            android:id="@+id/image_content3"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitXY" />
+        <ImageButton
+            android:id="@+id/image_content4"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitXY" />
+        <ImageButton
+            android:id="@+id/image_content5"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitXY" />
+        <ImageButton
+            android:id="@+id/image_content6"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+</ScrollView>

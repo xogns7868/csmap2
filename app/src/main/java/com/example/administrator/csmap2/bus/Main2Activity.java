@@ -180,8 +180,8 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
             lat = new String[3];
             lon = new String[3];
             locate = new String[3];
-            String gpsX = "37.609692";
-            String gpsY = "126.997708";
+            String gpsX = String.valueOf(latitude);
+            String gpsY = String.valueOf(longitude);
             Log.e("test", gpsY);
             String queryUrl="http://ws.bus.go.kr/api/rest/stationinfo/getStationByPos?"
                     + "ServiceKey=vyLHMUmRFVa0oDbYG5LY8zGFg5rvRjZ1SKT7QPmd3PKVHfdwiEbO920ydibB%2F4C3LukkRYDZB069jAyGSEqoLw%3D%3D"
@@ -253,7 +253,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         @Override
         public void onMapReady ( final GoogleMap map){
             mMap = map;
-            LatLng LocateNow = new LatLng(37.609692,126.997708);
+            LatLng LocateNow = new LatLng(latitude, longitude);
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(LocateNow);
             markerOptions.title("현재 내 위치");
