@@ -40,8 +40,8 @@ _필터링 기준은 다음과 같이 Youtube 이용정책 - 연령별 제한 �
 
    ![Lee_Tae_Hoon](https://user-images.githubusercontent.com/43363576/76700751-f025f580-66fd-11ea-800f-beb32b98a1d9.jpg)
   
-<code>역할: Video Classification 모델링과 학습 및 AWS 서버를 이용한 전체적인 소프트웨어 설계
-</code>
+<pre>역할: Video Classification 모델링과 학습 및 AWS 서버를 이용한 전체적인 소프트웨어 설계
+</pre>
 
    #### 20153211 이인평 (jinipyung@gmail.com) 
 
