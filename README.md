@@ -36,36 +36,43 @@ _필터링 기준은 다음과 같이 Youtube 이용정책 - 연령별 제한 �
 
 ## 3. 팀 소개
 
-   #### 이태훈(says7869@gmail.com)  
+   #### 이태훈 
 
    ![Lee_Tae_Hoon](https://user-images.githubusercontent.com/43363576/76700751-f025f580-66fd-11ea-800f-beb32b98a1d9.jpg)
   
-<pre>학번: 20153216
+<pre>메일: says7869@gmail.com
 역할: Video Classification 모델링과 학습 및 AWS 서버를 이용한 전체적인 소프트웨어 설계
 </pre>
 
-   #### 20153211 이인평 (jinipyung@gmail.com) 
+   #### 이인평
 
    ![Lee_In_Pyeong](https://user-images.githubusercontent.com/43363576/76700753-f0be8c00-66fd-11ea-8d2c-e914ac913b4f.jpg)
 
-   역할: Video Classfication, FastText 학습을 위한 데이터셋 구축 및 FastText 모델링과 학습
+<pre>메일: jinipyung@gmail.com
+역할: Video Classfication, FastText 학습을 위한 데이터셋 구축 및 FastText 모델링과 학습
+</pre>
 
-   #### 20153214 이주형 (srlee96@kookmin.ac.kr) 
+   #### 이주형
 
    ![Lee_Ju_Hyeong](https://user-images.githubusercontent.com/43363576/76700749-eef4c880-66fd-11ea-9b6e-71b7a2d99c96.jpg)
 
-   역할: STT(Speech To Text) API 적용 및 Video Classification 데이터셋 구축
+<pre>메일: srlee96@kookmin.ac.kr
+역할: STT(Speech To Text) API 적용 및 Video Classification 데이터셋 구축
+</pre>
 
    #### 20153158 김성수
 
-   역할: Kaldi-Zeroth 모델링과 학습 및 웹페이지와 웹서버 구축
+<pre>메일: 
+역할: Kaldi-Zeroth 모델링과 학습 및 웹페이지와 웹서버 구축
+</pre>
 
-   #### 김민재 (minjae103030@naver.com)
+   #### 김민재
 
    ![Kim_Min_Jae](https://user-images.githubusercontent.com/43363576/76700752-f025f580-66fd-11ea-9a67-8fd9e8231f06.jpg)
 
-   역할: Video Classfication, FastText 학습을 위한 데이터셋 구축 및 웹페이지 디자인 UI 제작
-
+<pre>메일: minjae103030@naver.com
+역할: Video Classfication, FastText 학습을 위한 데이터셋 구축 및 웹페이지 디자인 UI 제작
+</pre>
 ## 4. 사용법
 
 소스코드제출시 설치법이나 사용법을 작성하세요.
