@@ -28,7 +28,7 @@
    * 비속어가 어떠한 필터링없이 명확하게 발음되는 경우      
 
    
-_필터링 기준은 다음과 같이 Youtube 이용정책 - 연령별 제한 등급을 참고하였다._   
+_필터링 기준은 다음과 같이 [Youtube 이용정책 - 연령별 제한 등급](https://support.google.com/youtube/answer/2802167?hl=ko)을 참고하였다._   
 
 ![guide_line](https://user-images.githubusercontent.com/43363576/76705513-de574900-6723-11ea-89ee-8fc098de78bb.png)
 
