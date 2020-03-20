@@ -40,6 +40,11 @@ _필터링 기준은 다음과 같이 [YouTube 이용정책 - 연령별 제한 �
 
 ## 3. 팀 소개
 
+
+   #### Professor 임은진 교수님
+
+
+
    #### 이태훈 
 
    ![Lee_Tae_Hoon](https://user-images.githubusercontent.com/43363576/76700751-f025f580-66fd-11ea-800f-beb32b98a1d9.jpg)
@@ -64,7 +69,7 @@ _필터링 기준은 다음과 같이 [YouTube 이용정책 - 연령별 제한 �
 역할: STT(Speech To Text) API 적용 및 Video Classification 데이터셋 구축
 </pre>
 
-   #### 20153158 김성수
+   #### 김성수
    ![Kim_Sung_Soo](https://user-images.githubusercontent.com/43363576/76728656-bb1bb080-679a-11ea-8124-5d4e078fa880.jpg)
    
 <pre>메일: 
