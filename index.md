@@ -2,7 +2,7 @@
 # Welcome to YouHi! 
 
 
-![KakaoTalk_20200316_012625046](https://user-images.githubusercontent.com/43363576/76705711-435f6e80-6725-11ea-92ca-9860ca88fb0a.png)
+![logo](https://user-images.githubusercontent.com/43363576/77651142-b41d4b00-6faf-11ea-95c4-3a5a96f7ec31.png)
 
 
 **팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2020-4/
