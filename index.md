@@ -2,7 +2,7 @@
 # Welcome to YouHi! 
 
 
-![logo](https://user-images.githubusercontent.com/43363576/77651142-b41d4b00-6faf-11ea-95c4-3a5a96f7ec31.png)
+![logo](https://user-images.githubusercontent.com/43363576/77651399-12e2c480-6fb0-11ea-90c5-50a06a2c1b6b.png)
 
 
 **팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2020-4/
